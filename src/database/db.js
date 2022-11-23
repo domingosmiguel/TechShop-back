@@ -18,5 +18,5 @@ console.log(`Connect on ${databaseName} database`)
 export const usersCollection = db.collection(collectionsName.users);
 export const sessionsCollection = db.collection(collectionsName.sessions);
 export const productsCollection = db.collection(collectionsName.products);
-export const cartCollection = db.collection(collectionsName.cart);
+export const cartCollection = db.collection(collectionsName.carts);
 export const checkoutsCollection = db.collection(collectionsName.checkouts);

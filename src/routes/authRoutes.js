@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { signIn } from '../controllers/auth.controller.js';
+import { signIn, signUp } from '../controllers/auth.controller.js';
 
 // import controllers
 
@@ -11,7 +11,7 @@ const router = Router();
 // router.use( 'middleware' )
 /// //////////////////////////
 
-// router.post('/sign-up', ...)
+router.post('/sign-up', signUp)
 router.post('/sign-in', signIn)
 
 export default router;
