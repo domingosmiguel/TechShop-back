@@ -1,4 +1,4 @@
-import productSchema from '../schemas/productSchema';
+import productSchema from '../schemas/productSchema.js';
 
 export default function productValidMiddleware(req, res, next) {
   const { body } = req;
