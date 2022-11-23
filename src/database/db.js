@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
-import { collectionsName, databaseName } from '../assets.conts.js';
+import { collectionsName, databaseName } from '../assets/consts.js';
 
 dotenv.config();
 
@@ -13,6 +13,7 @@ try {
 }
 
 const db = mongoClient.db(`${databaseName}`);
+console.log(`Connect on ${databaseName} database`)
 
 export const usersCollection = db.collection(collectionsName.users);
 export const sessionsCollection = db.collection(collectionsName.sessions);
