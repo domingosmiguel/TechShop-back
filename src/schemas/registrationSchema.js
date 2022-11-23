@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const loginSchema = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string().min(3).max(60).required(),
 
   email: Joi.string()
     .email({
@@ -10,9 +10,9 @@ const loginSchema = Joi.object({
     })
     .required(),
 
-  password: Joi.string().required(),
+  password: Joi.string().min(6).max(30).required(),
 
-  repeatPassword: Joi.string().required(),
+  repeatPassword: Joi.ref('password').required(),
 });
 
 export default loginSchema;

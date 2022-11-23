@@ -1,17 +1,19 @@
 import { Router } from 'express';
 
 // import controllers
-import { productsGet } from '../controllers/productsController.js';
+import {
+  productsDelete,
+  productsGet,
+  productsPost,
+  productsPut,
+} from '../controllers/productsController.js';
 // import middleware
 
-import userAuthValidMiddleware from '../middleware/userAuthValidMiddleware.js';
 import adminAuthValidMiddleware from '../middleware/adminAuthValidMiddleware.js';
+import productValidMiddleware from '../middleware/productValidMiddleware.js';
+import userAuthValidMiddleware from '../middleware/userAuthValidMiddleware.js';
 
 const router = Router();
-
-/// //////////////////////////
-// router.use( 'middleware' )
-/// //////////////////////////
 
 router.use(userAuthValidMiddleware);
 
@@ -22,8 +24,11 @@ router.get('/products', productsGet);
 
 router.use(adminAuthValidMiddleware);
 
-// router.post('/products', ...)
-// router.put('/products', ...)
-// router.delete('/products', ...)
+router.delete('/products/:id', productsDelete);
+
+router.use(productValidMiddleware);
+
+router.post('/products', productsPost);
+router.put('/products/:id', productsPut);
 
 export default router;
