@@ -1,6 +1,6 @@
-import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
-import { collectionsName, databaseName } from '../assets.conts.js';
+import { MongoClient } from 'mongodb';
+import { collectionsName, databaseName } from '../assets/consts.js';
 
 dotenv.config();
 
@@ -17,5 +17,5 @@ const db = mongoClient.db(`${databaseName}`);
 export const usersCollection = db.collection(collectionsName.users);
 export const sessionsCollection = db.collection(collectionsName.sessions);
 export const productsCollection = db.collection(collectionsName.products);
-export const cartCollection = db.collection(collectionsName.cart);
+export const cartsCollection = db.collection(collectionsName.carts);
 export const checkoutsCollection = db.collection(collectionsName.checkouts);
