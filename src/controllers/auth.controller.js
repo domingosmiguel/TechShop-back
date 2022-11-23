@@ -15,8 +15,8 @@ export async function signIn (req, res) {
     }
 
     const user = await usersCollection.findOne({ email });
-    await sessionsCollection.insertOne({ token, userID: user._id });
-    res.status(201).send( user._id, token );
+    await sessionsCollection.insertOne({ userID: user._id, token });
+    res.status(201).send({ token });
 }
 
 export async function signUp (req, res) {

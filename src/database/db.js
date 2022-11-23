@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv';
 import { collectionsName, databaseName } from '../assets/consts.js';
 
 dotenv.config();
