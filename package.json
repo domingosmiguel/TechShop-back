@@ -1,12 +1,13 @@
 {
   "author": "Miguel Domingos",
-  "name": "TechShop",
+  "name": "techshop",
   "version": "1.0.0",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon -L src/index.js"
+    "dev": "npx nodemon -L src/index.js",
+    "mongo": "mongod --dbpath ~/.mongo"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
