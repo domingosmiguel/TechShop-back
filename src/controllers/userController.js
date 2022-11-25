@@ -3,14 +3,15 @@ import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
 
 export async function signIn (req, res) {
-    const { userID } = res.locals.user;
+    const { email } = req.body;
     const token = uuid();
 
     try {
-        await sessionsCollection.insertOne({ userID, token });
-        res.status(201).send({ token });
+        const user = await usersCollection.findOne({ email });
+        await sessionsCollection.insertOne({ userID: user._id, token });
+        return res.status(201).send({ token });
     } catch (err) {
-        res.status(500).send('Não foi poosível fazer login')
+        return res.status(500).send('Não foi poosível fazer login')
     }
 }
 

@@ -11,18 +11,20 @@ export async function signInValid (req, res, next) {
         res.status(422).send(error.details.map(err => err.message));
         return;
     }
+    try {
+        const user = await usersCollection.findOne({ email });
+        if (!user) {
+            return res.status(404).send('Usuário não encontrado');
+        }
 
-    const user = await usersCollection.findOne({ email });
-    if (!user) {
-        return res.status(404).send('Usuário não encontrado');
+        const hash = bcrypt.compareSync(password, user.passHash);
+        if (!hash) {
+            return res.status(422).send('Senha incorreta');
+        }
+    } catch (err) {
+        res.status(500).send('Não foi possível validar seu pedido')
     }
 
-    const hash = bcrypt.compareSync(password, user.password);
-    if (!hash) {
-        return res.status(422).send('Senha incorreta');
-    }
-
-    res.locals.user = { userID: user._id };
     next();
 }
 
