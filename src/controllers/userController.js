@@ -9,7 +9,7 @@ export async function signIn (req, res) {
     try {
         const user = await usersCollection.findOne({ email });
         await sessionsCollection.insertOne({ userID: user._id, token });
-        return res.status(201).send({ token });
+        return res.status(201).send({ token, name: user.name });
     } catch (err) {
         return res.status(500).send('Não foi poosível fazer login')
     }
@@ -25,4 +25,13 @@ export async function signUp (req, res) {
     } catch (err) {
         res.status(500).send('Não foi possivel realizar o cadastro')
     }
+}
+
+export async function getUser (req, res) {
+    const { authorization } = req.headers;
+    const token = authorization.replace('Bearer ', '')
+
+    const userID = await sessionsCollection.findOne({ token })
+    const user = await usersCollection.findOne({ _id: new Object(userID.userID) })
+    res.send({ name: user.name, email: user.email })
 }
