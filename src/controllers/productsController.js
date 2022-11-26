@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { productsCollection } from '../database/db.js';
+import { productsCollection, sessionsCollection } from '../database/db.js';
 
 export const productsGet = async (req, res) => {
   // ADD SOME FILTERS
@@ -10,6 +10,7 @@ export const productsGet = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
 export const productsPost = async (req, res) => {
   const { product } = res.locals;
   try {
@@ -40,6 +41,7 @@ export const productsPut = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
 export const productsDelete = async (req, res) => {
   const { id } = req.params;
   try {
@@ -53,4 +55,15 @@ export const productsDelete = async (req, res) => {
   } catch (error) {
     res.sendStatus(500);
   }
+};
+
+export const trolleyItems = async (req, res) => {
+  const { authorization } = req.headers;
+  const token = authorization.replace('Bearer ', '');
+
+  const userID = await sessionsCollection.findOne({ token });
+  const itemList = await productsCollection.find().toArray();
+
+  const userList = itemList.filter(item => item.userID === userID.userID);
+  res.send(userList)
 };

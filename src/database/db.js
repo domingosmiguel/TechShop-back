@@ -13,6 +13,7 @@ try {
 }
 
 const db = mongoClient.db(`${databaseName}`);
+console.log(`Connect on ${databaseName} database`)
 
 export const usersCollection = db.collection(collectionsName.users);
 export const sessionsCollection = db.collection(collectionsName.sessions);

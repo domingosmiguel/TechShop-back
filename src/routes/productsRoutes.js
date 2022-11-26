@@ -5,7 +5,7 @@ import {
   productsDelete,
   productsGet,
   productsPost,
-  productsPut,
+  productsPut
 } from '../controllers/productsController.js';
 // import middleware
 
