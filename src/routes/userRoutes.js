@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { trolleyItems } from '../controllers/productsController.js';
 import { getUser } from '../controllers/userController.js';
 
 // import controllers
@@ -12,5 +13,6 @@ const router = Router();
 /// //////////////////////////
 
 router.get('/user', getUser)
+router.get('/cart', trolleyItems)
 
 export default router;
