@@ -10,7 +10,7 @@ const registrationSchema = Joi.object({
     })
     .required(),
 
-  password: Joi.string().min(6).max(30).required()
+  password: Joi.string().min(6).max(30).required(),
 });
 
 export default registrationSchema;

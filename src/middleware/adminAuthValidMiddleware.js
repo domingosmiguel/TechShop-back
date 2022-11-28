@@ -1,6 +1,7 @@
 import { usersCollection } from '../database/db.js';
 
 export default async function adminAuthValidMiddleware(req, res, next) {
+  console.log('adminAuthValidMiddleware');
   const { session } = res.locals;
   try {
     const user = await usersCollection.findOne({ _id: session.userId });

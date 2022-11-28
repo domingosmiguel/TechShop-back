@@ -13,7 +13,7 @@ const productSchema = Joi.object({
 
   picture: Joi.string().uri().required(),
 
-  Qty: Joi.number().integer().positive().required(),
+  qty: Joi.number().integer().positive().required(),
 });
 
 export default productSchema;

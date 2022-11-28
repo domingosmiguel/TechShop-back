@@ -1,11 +1,13 @@
 import { sessionsCollection } from '../database/db.js';
 
 export default async function userAuthValidMiddleware(req, res, next) {
+  console.log('userAuthValidMiddleware');
   const { authorization } = req.headers;
-  const token = authorization.replace('Bearer ', '');
-  if (!token) {
+  console.log(req.headers, req.body);
+  if (!authorization) {
     return res.sendStatus(401);
   }
+  const token = authorization?.replace('Bearer ', '');
   try {
     const session = await sessionsCollection.findOne({ token });
     if (!session) {

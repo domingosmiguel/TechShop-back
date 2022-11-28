@@ -12,7 +12,7 @@ const router = Router();
 // router.use( 'middleware' )
 /// //////////////////////////
 
-router.post('/sign-up', signUpValid, signUp)
-router.post('/sign-in', signInValid, signIn)
+router.post('/sign-up', signUpValid, signUp);
+router.post('/sign-in', signInValid, signIn);
 
 export default router;
